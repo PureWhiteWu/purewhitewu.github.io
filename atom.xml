@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://purewhite.io/"/>
-  <updated>2019-03-18T06:14:06.618Z</updated>
+  <updated>2019-03-25T03:56:50.684Z</updated>
   <id>https://purewhite.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>golang逃逸分析</title>
+    <link href="https://purewhite.io/2019/03/25/golang-escape-check/"/>
+    <id>https://purewhite.io/2019/03/25/golang-escape-check/</id>
+    <published>2019-03-24T16:22:51.000Z</published>
+    <updated>2019-03-25T03:56:50.684Z</updated>
+    
+    <content type="html"><![CDATA[<p>带GC语言给我们程序的编写带来了极大的便利，但是与此同时屏蔽了很多底层的细节，比如一个对象是在栈上分配还是在堆上分配。对于普通的代码来说虽然不需要关心这么多，但是作为强迫症程序猿，还是希望能让自己写出来的代码性能最优，所以还是需要了解什么是逃逸，以及如何判断是否发生了逃逸。</p><a id="more"></a><h2 id="什么是堆和栈？"><a href="#什么是堆和栈？" class="headerlink" title="什么是堆和栈？"></a>什么是堆和栈？</h2><p>首先需要知道，我们说的堆和栈是啥。这个可不是数据结构里面的”堆”和”栈”，而是操作系统里面的概念。</p><h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>在程序中，每个函数块都会有自己的内存区域用来存自己的局部变量（内存占用少）、返回地址、返回值之类的数据，这一块内存区域有特定的结构和寻址方式，大小在编译时已经确定，寻址起来也十分迅速，开销很少。这一块内存地址称为栈。栈是线程级别的，大小在创建的时候已经确定，所以当数据太大的时候，就会发生”stack overflow”。</p><h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>在程序中，全局变量、内存占用大的局部变量、发生了逃逸的局部变量存在的地方就是堆，这一块内存没有特定的结构，也没有固定的大小，可以根据需要进行调整。简单来说，有大量数据要存的时候，就存在堆里面。堆是进程级别的。当一个变量需要分配在堆上的时候，开销会比较大，对于go这种带GC的语言来说，也会增加gc压力，同时也容易造成内存碎片。</p><h2 id="为什么有的变量要分配在堆，有的要分配在栈？"><a href="#为什么有的变量要分配在堆，有的要分配在栈？" class="headerlink" title="为什么有的变量要分配在堆，有的要分配在栈？"></a>为什么有的变量要分配在堆，有的要分配在栈？</h2><p>这个问题要从C++说起了。在C++中，假设我们有以下代码：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">f1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i = <span class="number">5</span>;</span><br><span class="line">  <span class="keyword">return</span> &amp;i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> *i = f1();</span><br><span class="line">  *i = <span class="number">6</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这时候程序结果是无法预期的，因为在函数f1中，i是一个局部变量，会分配在栈上，而栈在函数返回之后就失效了(Plan9 汇编中SP指针被修改)，于是i的地址所存的值是不可预期的，后续在main中对返回的i的地址中的值的修改可能会修改掉程序运行的数据，造成结果无法预期。</p><p>所以对于需要返回一个地址回去的情况，在C++中需要用new来分配一块堆上的内存才行，因为堆是进程级别的，也就是全局的，除非程序猿手动释放，否则不会被回收（释放不好会段错误，忘了释放会内存泄漏），于是就可以使得这个地址不会再被使用到，可以安全地返回。</p><h2 id="如何进行逃逸分析？"><a href="#如何进行逃逸分析？" class="headerlink" title="如何进行逃逸分析？"></a>如何进行逃逸分析？</h2><p>在golang中，所有内存都是由runtime管理的，程序猿不需要关心具体变量分配在哪里，什么时候回收，但是编译器需要知道这一点，这样才能确定函数栈帧大小、哪些变量需要”new”在堆上，所以编译器需要进行<code>逃逸分析</code>。简单来说，<code>逃逸分析</code>决定了一个变量是分配在栈上还是分配在堆上。</p><p>golang逃逸分析最基本的原则是：<code>如果一个函数返回的是一个（局部）变量的地址，那么这个变量就发生逃逸</code>。</p><p>在golang里面，变量分配在何处和是否使用new无关，意味着程序猿无法手动指定某个变量必须分配在栈上或者堆上(自己撸asm的当我没说)，所以我们需要通过一些方法来确定某个变量到底是分配在了栈上还是堆上。</p><p>我们用以下代码作为例子：</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">a := f1()</span><br><span class="line">*a++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//go:noinline</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f1</span><span class="params">()</span> *<span class="title">int</span></span> &#123;</span><br><span class="line">i := <span class="number">1</span></span><br><span class="line"><span class="keyword">return</span> &amp;i</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在以上代码中，给f1增加了noinline标记，让go编译器不要将函数内联。</p><h3 id="使用编译参数"><a href="#使用编译参数" class="headerlink" title="使用编译参数"></a>使用编译参数</h3><p>golang提供了编译的参数让我们可以直观地看到变量是否发生了逃逸，只需要在go build时指定 <code>-gcflags &#39;-m&#39;</code>即可：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> go build -gcflags <span class="string">'-m'</span> escape.go</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">command</span>-line-arguments</span></span><br><span class="line">./escape.go:3:6: can inline main</span><br><span class="line">./escape.go:11:9: &amp;i escapes to heap</span><br><span class="line">./escape.go:10:2: moved to heap: i</span><br></pre></td></tr></table></figure><p>这样可以很直观地看到在第10、11行，i发生了逃逸，内存会分配在堆上。</p><p>除了使用编译参数之外，我们还可以使用一种更底层的，更硬核，也更准确的方式来判断一个对象是否逃逸，那就是：直接看汇编！</p><h3 id="使用汇编"><a href="#使用汇编" class="headerlink" title="使用汇编"></a>使用汇编</h3><p>我们使用<code>go tool compile -S</code>生成汇编代码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ go tool compile -S escape.go | grep escape.go:10</span><br><span class="line">0x001d 00029 (escape.go:10)PCDATA$2, $1</span><br><span class="line">0x001d 00029 (escape.go:10)PCDATA$0, $0</span><br><span class="line">0x001d 00029 (escape.go:10)LEAQtype.int(SB), AX</span><br><span class="line">0x0024 00036 (escape.go:10)PCDATA$2, $0</span><br><span class="line">0x0024 00036 (escape.go:10)MOVQAX, (SP)</span><br><span class="line">0x0028 00040 (escape.go:10)CALLruntime.newobject(SB)</span><br><span class="line">0x002d 00045 (escape.go:10)PCDATA$2, $1</span><br><span class="line">0x002d 00045 (escape.go:10)MOVQ8(SP), AX</span><br><span class="line">0x0032 00050 (escape.go:10)MOVQ$1, (AX)</span><br></pre></td></tr></table></figure><p>可以看到，这里的00040有调用<code>runtime.newobject(SB)</code>这个方法，看到这个方法大家就应该懂了！</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上提供了两种方法可以用来判断某个变量是否发生了逃逸，其中使用编译参数比较简单，使用汇编比较硬核。通过这两种方法分析完逃逸，就能进一步优化堆上内存数量，减轻GC压力了。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;带GC语言给我们程序的编写带来了极大的便利，但是与此同时屏蔽了很多底层的细节，比如一个对象是在栈上分配还是在堆上分配。对于普通的代码来说虽然不需要关心这么多，但是作为强迫症程序猿，还是希望能让自己写出来的代码性能最优，所以还是需要了解什么是逃逸，以及如何判断是否发生了逃逸。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="go" scheme="https://purewhite.io/categories/go/"/>
+    
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="go" scheme="https://purewhite.io/tags/go/"/>
+    
+      <category term="asm" scheme="https://purewhite.io/tags/asm/"/>
+    
+  </entry>
   
   <entry>
     <title>算法详解：最长上升子序列</title>
@@ -145,13 +171,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -316,13 +342,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -349,13 +375,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -387,13 +413,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -420,13 +446,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -460,13 +486,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -492,13 +518,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -524,13 +550,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -556,13 +582,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -588,13 +614,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -620,13 +646,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -676,13 +702,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -1166,11 +1192,11 @@
       <category term="运维" scheme="https://purewhite.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
       <category term="Linux" scheme="https://purewhite.io/tags/Linux/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="git" scheme="https://purewhite.io/tags/git/"/>
     

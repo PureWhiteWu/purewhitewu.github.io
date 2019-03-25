@@ -1,3 +1,4 @@
+https://purewhite.io/2019/03/25/golang-escape-check/
 https://purewhite.io/2018/07/25/lis/
 https://purewhite.io/2018/07/11/lintcode-powx-n/
 https://purewhite.io/2018/07/11/lintcode-find-k-closest-elements/
