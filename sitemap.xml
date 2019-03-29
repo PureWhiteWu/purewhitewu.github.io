@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://purewhite.io/2019/03/28/golang-mutex-source/</loc>
+    
+    <lastmod>2019-03-29T02:50:56.232Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://purewhite.io/2019/03/25/golang-escape-check/</loc>
     
     <lastmod>2019-03-25T03:56:50.684Z</lastmod>
