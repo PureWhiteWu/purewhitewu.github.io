@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://purewhite.io/"/>
-  <updated>2019-03-29T05:26:28.513Z</updated>
+  <updated>2019-04-01T13:03:37.430Z</updated>
   <id>https://purewhite.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>golang的GC如何处理unsafe.Pointer？</title>
+    <link href="https://purewhite.io/2019/04/01/golang-gc-consider-unsafe/"/>
+    <id>https://purewhite.io/2019/04/01/golang-gc-consider-unsafe/</id>
+    <published>2019-04-01T12:42:37.000Z</published>
+    <updated>2019-04-01T13:03:37.430Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在golang的邮件列表中看到了一篇关于GC如何处理<code>unsafe.Pointer</code>的讨论，觉得应当记录一下。</p><a id="more"></a><p>问题1：如果一个对象只被<code>unsafe.Pointer</code>所指向，那么这个对象会被回收么？</p><p>回答1：不会。如果<code>unsafe.Pointer</code>指向了一个对象，那么go的GC会知道有这个对象，并且不会释放这个对象的内存。</p><p>但是注意，有一个例外：如果这个对象的内存是在go外被分配的（比如<code>C.malloc</code>），那么以上的规则不生效。</p><p>问题2：如果这个对象内部也有一些指针，那么GC会如何处理这些指针？</p><p>回答2：如果这个对象是在go内部分配的，那么GC也会遍历这些指针（也就是不会被释放）。</p><p>问题3：如果在以上两个问题中，对象都不会被释放，那么GC是怎么处理的？<code>unsafe.Pointer</code>会存对象的类型信息么？</p><p>回答3：不会存类型信息，但是如果对象是在go中申请的，那么在对应的内存中是会存有类型信息的；如果没有类型信息，那么GC会采用非常保守的策略：遍历整个对象，只要其中有8bit的值是合法的内存地址（在栈范围内，或者在堆上），就认为是指针，不会进行回收。</p><p>问题4：有没有一种情况<code>unsafe.Pointer</code>会变成非法的（野指针）？</p><p>回答4：在go中，只要<code>unsafe.Pointer</code>有一刻是合法的，并且它的值没有修改，那么go会保证它在整个程序的生命周期中都是合法的。在<code>unsafe.Pointer</code>和<code>unsafe.Pointer</code>间的赋值一定是安全的，但是间接的赋值（比如同过uintptr）可能是非法的，因为uintptr不被认为持有了对象。</p><p>go会忽视所有非go分配的对象（比如C.malloc），所以如果在C中有一个指针指向的地址包含了go的对象，那么必须保证这个指针在go中也被一个对象存储下来。</p><p><a href="https://groups.google.com/d/msg/golang-nuts/yNis7bQG_rY/yaJFoSx1hgIJ" target="_blank" rel="noopener">原文</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在golang的邮件列表中看到了一篇关于GC如何处理&lt;code&gt;unsafe.Pointer&lt;/code&gt;的讨论，觉得应当记录一下。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="go" scheme="https://purewhite.io/categories/go/"/>
+    
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="go" scheme="https://purewhite.io/tags/go/"/>
+    
+  </entry>
   
   <entry>
     <title>源码剖析golang中sync.Mutex</title>
@@ -198,13 +222,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -369,13 +393,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -402,13 +426,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -440,13 +464,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -473,13 +497,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -513,13 +537,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -545,13 +569,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -577,13 +601,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -609,13 +633,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -641,13 +665,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -673,13 +697,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -729,13 +753,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
       <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -1219,11 +1243,11 @@
       <category term="运维" scheme="https://purewhite.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
       <category term="Linux" scheme="https://purewhite.io/tags/Linux/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="git" scheme="https://purewhite.io/tags/git/"/>
     
