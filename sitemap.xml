@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://purewhite.io/2019/04/02/golang-validate-unsafe-is-unsafe/</loc>
+    
+    <lastmod>2019-04-02T05:41:01.849Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://purewhite.io/2019/04/01/golang-gc-consider-unsafe/</loc>
     
     <lastmod>2019-04-01T13:03:37.430Z</lastmod>

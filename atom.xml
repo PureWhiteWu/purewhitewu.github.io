@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://purewhite.io/"/>
-  <updated>2019-04-01T13:03:37.430Z</updated>
+  <updated>2019-04-02T05:41:01.849Z</updated>
   <id>https://purewhite.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>验证golang中unsafe包不安全</title>
+    <link href="https://purewhite.io/2019/04/02/golang-validate-unsafe-is-unsafe/"/>
+    <id>https://purewhite.io/2019/04/02/golang-validate-unsafe-is-unsafe/</id>
+    <published>2019-04-02T05:32:28.000Z</published>
+    <updated>2019-04-02T05:41:01.849Z</updated>
+    
+    <content type="html"><![CDATA[<p>在go中，uintptr不能持有对象，unsafe包不安全，但是我之前一直没有时间验证，今天写了段代码验证了一下。</p><a id="more"></a><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line"><span class="string">"fmt"</span></span><br><span class="line"><span class="string">"unsafe"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">a := f()</span><br><span class="line">b := f2()</span><br><span class="line">fmt.Println(a)</span><br><span class="line">fmt.Println(b)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//go:noinline</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">()</span> <span class="title">unsafe</span>.<span class="title">Pointer</span></span> &#123;</span><br><span class="line">d := <span class="number">1</span></span><br><span class="line">p := unsafe.Pointer(&amp;d)</span><br><span class="line"><span class="keyword">return</span> p</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//go:noinline</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f2</span><span class="params">()</span> <span class="title">uintptr</span></span> &#123;</span><br><span class="line">d := <span class="number">1</span></span><br><span class="line">p := <span class="keyword">uintptr</span>(unsafe.Pointer(&amp;d))</span><br><span class="line"><span class="keyword">return</span> p</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="逃逸分析"><a href="#逃逸分析" class="headerlink" title="逃逸分析"></a>逃逸分析</h2><p>根据逃逸分析可以看出来f和f2这两个函数中的d变量分别分配在哪里：</p><h3 id="编译参数方法"><a href="#编译参数方法" class="headerlink" title="编译参数方法"></a>编译参数方法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> go build -gcflags <span class="string">'-m -m'</span> unsafe.go</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">command</span>-line-arguments</span></span><br><span class="line">./unsafe.go:16:6: cannot inline f: marked go:noinline</span><br><span class="line">./unsafe.go:23:6: cannot inline f2: marked go:noinline</span><br><span class="line">./unsafe.go:8:6: cannot inline main: function too complex: cost 260 exceeds budget 80</span><br><span class="line">./unsafe.go:11:13: inlining call to fmt.Println func(...interface &#123;&#125;) (int, error) &#123; return fmt.Fprintln(io.Writer(os.Stdout), fmt.a...) &#125;</span><br><span class="line">./unsafe.go:12:13: inlining call to fmt.Println func(...interface &#123;&#125;) (int, error) &#123; return fmt.Fprintln(io.Writer(os.Stdout), fmt.a...) &#125;</span><br><span class="line">./unsafe.go:18:22: &amp;d escapes to heap</span><br><span class="line">./unsafe.go:18:22: from p (assigned) at ./unsafe.go:18:4</span><br><span class="line">./unsafe.go:18:22: from ~r0 (return) at ./unsafe.go:19:2</span><br><span class="line">./unsafe.go:17:2: moved to heap: d</span><br><span class="line">./unsafe.go:25:30: f2 &amp;d does not escape</span><br><span class="line">./unsafe.go:11:13: a escapes to heap</span><br><span class="line">./unsafe.go:11:13: from ~arg0 (assign-pair) at ./unsafe.go:11:13</span><br><span class="line">./unsafe.go:11:13: io.Writer(os.Stdout) escapes to heap</span><br><span class="line">./unsafe.go:11:13: from io.Writer(os.Stdout) (passed to call[argument escapes]) at ./unsafe.go:11:13</span><br><span class="line">./unsafe.go:12:13: io.Writer(os.Stdout) escapes to heap</span><br><span class="line">./unsafe.go:12:13: from io.Writer(os.Stdout) (passed to call[argument escapes]) at ./unsafe.go:12:13</span><br><span class="line">./unsafe.go:12:13: b escapes to heap</span><br><span class="line">./unsafe.go:12:13: from ~arg0 (assign-pair) at ./unsafe.go:12:13</span><br><span class="line">./unsafe.go:12:13: from []interface &#123;&#125; literal (slice-literal-element) at ./unsafe.go:12:13</span><br><span class="line">./unsafe.go:12:13: from fmt.a (assigned) at ./unsafe.go:12:13</span><br><span class="line">./unsafe.go:12:13: from *fmt.a (indirection) at ./unsafe.go:12:13</span><br><span class="line">./unsafe.go:12:13: from fmt.a (passed to call[argument content escapes]) at ./unsafe.go:12:13</span><br><span class="line">./unsafe.go:11:13: main []interface &#123;&#125; literal does not escape</span><br><span class="line">./unsafe.go:12:13: main []interface &#123;&#125; literal does not escape</span><br><span class="line">&lt;autogenerated&gt;:1: os.(*File).close .this does not escape</span><br></pre></td></tr></table></figure><p>可以看出来在函数f中，d逃逸到堆上；但是在函数f2中，d没有发生逃逸，uintptr没有持有对象。</p><h3 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h3><p>再来看看汇编的结果：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ go tool compile -S unsafe.go | grep unsafe.go:24</span><br><span class="line">0x000e 00014 (unsafe.go:24)PCDATA$2, $0</span><br><span class="line">0x000e 00014 (unsafe.go:24)PCDATA$0, $0</span><br><span class="line">0x000e 00014 (unsafe.go:24)MOVQ$1, &quot;&quot;.d(SP)</span><br><span class="line">$ go tool compile -S unsafe.go | grep unsafe.go:17</span><br><span class="line">0x001d 00029 (unsafe.go:17)PCDATA$2, $1</span><br><span class="line">0x001d 00029 (unsafe.go:17)PCDATA$0, $0</span><br><span class="line">0x001d 00029 (unsafe.go:17)LEAQtype.int(SB), AX</span><br><span class="line">0x0024 00036 (unsafe.go:17)PCDATA$2, $0</span><br><span class="line">0x0024 00036 (unsafe.go:17)MOVQAX, (SP)</span><br><span class="line">0x0028 00040 (unsafe.go:17)CALLruntime.newobject(SB)</span><br><span class="line">0x002d 00045 (unsafe.go:17)PCDATA$2, $1</span><br><span class="line">0x002d 00045 (unsafe.go:17)MOVQ8(SP), AX</span><br><span class="line">0x0032 00050 (unsafe.go:17)MOVQ$1, (AX)</span><br></pre></td></tr></table></figure><p>可以看出来，结果也是一样的，f中的d调用了newobject，但是f2中没有。</p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>所以为什么说unsafe包不安全呢，原因之一就是因为go不保证地址一定是有效的，当然还有其它的原因，有时间再验证分享。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在go中，uintptr不能持有对象，unsafe包不安全，但是我之前一直没有时间验证，今天写了段代码验证了一下。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="go" scheme="https://purewhite.io/categories/go/"/>
+    
+    
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="go" scheme="https://purewhite.io/tags/go/"/>
+    
+      <category term="asm" scheme="https://purewhite.io/tags/asm/"/>
+    
+  </entry>
   
   <entry>
     <title>golang的GC如何处理unsafe.Pointer？</title>
@@ -222,13 +248,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
-    
-      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
+    
+      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -393,13 +419,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
-    
-      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
+    
+      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -426,13 +452,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
-    
-      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
+    
+      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -464,13 +490,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
-    
-      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
+    
+      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -497,13 +523,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
-    
-      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
+    
+      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -537,13 +563,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
-    
-      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
+    
+      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -569,13 +595,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
-    
-      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
+    
+      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -601,13 +627,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
-    
-      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
+    
+      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -633,13 +659,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
-    
-      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
+    
+      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -665,13 +691,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
-    
-      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
+    
+      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -697,13 +723,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
-    
-      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
+    
+      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -753,13 +779,13 @@
       <category term="kubernetes" scheme="https://purewhite.io/categories/kubernetes/"/>
     
     
-      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
-    
-      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="架构" scheme="https://purewhite.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="kubernetes" scheme="https://purewhite.io/tags/kubernetes/"/>
+    
+      <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="docker" scheme="https://purewhite.io/tags/docker/"/>
     
@@ -1243,11 +1269,11 @@
       <category term="运维" scheme="https://purewhite.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
+      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
       <category term="Linux" scheme="https://purewhite.io/tags/Linux/"/>
     
       <category term="运维" scheme="https://purewhite.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
-      <category term="后端" scheme="https://purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
       <category term="git" scheme="https://purewhite.io/tags/git/"/>
     
