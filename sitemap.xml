@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://purewhite.io/about/index.html</loc>
+    
+    <lastmod>2019-05-24T11:18:40.398Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://purewhite.io/2019/03/28/golang-mutex-source/</loc>
     
     <lastmod>2019-04-09T09:25:40.362Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>https://purewhite.io/categories/index.html</loc>
     
     <lastmod>2019-03-18T06:14:22.963Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://purewhite.io/about/index.html</loc>
-    
-    <lastmod>2019-03-18T06:14:22.932Z</lastmod>
     
   </url>
   
