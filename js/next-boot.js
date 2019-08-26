@@ -1,53 +1,96 @@
 /* global NexT, CONFIG */
 
-$(document).ready(function() {
+NexT.boot = {};
 
-  $(document).trigger('bootstrap:before');
+NexT.boot.registerEvents = function() {
 
-  /**
-   * Register JS handlers by condition option.
-   * Need to add config option in Front-End at 'layout/_partials/head.swig' file.
-   */
-  CONFIG.fastclick && NexT.utils.isMobile() && window.FastClick.attach(document.body);
-  CONFIG.lazyload && NexT.utils.lazyLoadPostsImages();
-
-  NexT.utils.registerESCKeyEvent();
-
-  CONFIG.back2top && NexT.utils.registerBackToTop();
+  NexT.utils.registerScrollPercent();
+  NexT.utils.registerCanIUseTag();
 
   // Mobile top menu bar.
-  $('.site-nav-toggle button').on('click', function() {
+  document.querySelector('.site-nav-toggle button').addEventListener('click', () => {
     var $siteNav = $('.site-nav');
     var ON_CLASS_NAME = 'site-nav-on';
     var isSiteNavOn = $siteNav.hasClass(ON_CLASS_NAME);
     var animateAction = isSiteNavOn ? 'slideUp' : 'slideDown';
     var animateCallback = isSiteNavOn ? 'removeClass' : 'addClass';
 
-    $siteNav.stop()[animateAction]('fast', function() {
+    $siteNav.stop()[animateAction]('fast', () => {
       $siteNav[animateCallback](ON_CLASS_NAME);
     });
   });
+
+  var TAB_ANIMATE_DURATION = 200;
+  $('.sidebar-nav li').on('click', event => {
+    var item = $(event.currentTarget);
+    var activeTabClassName = 'sidebar-nav-active';
+    var activePanelClassName = 'sidebar-panel-active';
+    if (item.hasClass(activeTabClassName)) return;
+
+    var target = $('.' + item.data('target'));
+    var currentTarget = target.siblings('.sidebar-panel');
+    currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, () => {
+      // Prevent adding TOC to Overview if Overview was selected when close & open sidebar.
+      currentTarget.removeClass(activePanelClassName);
+      target
+        .stop()
+        .css({ opacity: 0 })
+        .addClass(activePanelClassName)
+        .animate({ opacity: 1 }, TAB_ANIMATE_DURATION);
+    });
+
+    item.siblings().removeClass(activeTabClassName);
+    item.addClass(activeTabClassName);
+  });
+
+  window.addEventListener('resize', NexT.utils.initSidebarDimension);
+
+  window.addEventListener('hashchange', () => {
+    var tHash = location.hash;
+    if (tHash !== '' && !tHash.match(/%\S{2}/)) {
+      var target = document.querySelector(`.tabs ul.nav-tabs li a[href="${tHash}"]`);
+      target && target.click();
+    }
+  });
+};
+
+NexT.boot.refresh = function() {
 
   /**
    * Register JS handlers by condition option.
    * Need to add config option in Front-End at 'layout/_partials/head.swig' file.
    */
   CONFIG.fancybox && NexT.utils.wrapImageWithFancyBox();
-  CONFIG.tabs && NexT.utils.registerTabsTag();
+  CONFIG.mediumzoom && window.mediumZoom('.post-body :not(a) > img');
+  CONFIG.lazyload && window.lozad('.post-body img').observe();
+  CONFIG.pangu && window.pangu.spacingPage();
 
-  NexT.utils.embeddedVideoTransformer();
+  CONFIG.exturl && NexT.utils.registerExtURL();
+  CONFIG.copycode.enable && NexT.utils.registerCopyCode();
+  NexT.utils.registerTabsTag();
+  NexT.utils.registerActiveMenuItem();
+  NexT.utils.registerSidebarTOC();
+  NexT.utils.wrapTableWithBox();
+  NexT.utils.registerVideoIframe();
+};
 
-  // Define Motion Sequence.
-  NexT.motion.integrator
-    .add(NexT.motion.middleWares.logo)
-    .add(NexT.motion.middleWares.menu)
-    .add(NexT.motion.middleWares.postList)
-    .add(NexT.motion.middleWares.sidebar);
+NexT.boot.motion = function() {
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .add(NexT.motion.middleWares.logo)
+      .add(NexT.motion.middleWares.menu)
+      .add(NexT.motion.middleWares.postList)
+      .add(NexT.motion.middleWares.sidebar)
+      .bootstrap();
+  } else {
+    NexT.utils.updateSidebarPosition();
+  }
+};
 
-  $(document).trigger('motion:before');
-
-  // Bootstrap Motion.
-  CONFIG.motion.enable && NexT.motion.integrator.bootstrap();
-
-  $(document).trigger('bootstrap:after');
+window.addEventListener('DOMContentLoaded', () => {
+  NexT.boot.registerEvents();
+  NexT.boot.refresh();
+  NexT.boot.motion();
 });
+window.addEventListener('pjax:success', NexT.boot.refresh);
