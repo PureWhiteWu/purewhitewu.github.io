@@ -1,19 +1,45 @@
-<h1 align="center">Algolia 搜索</h1><p>NexT 内部提供 Algolia 的搜索功能，要使用此功能请确保所使用的 NexT 版本在 <code>v5.1.0</code> 之后。需要注意的是，仅仅将 <code>next/_config.yml</code> 中 <code>algolia_search</code> 的 <code>enable</code> 打开<strong>并不能让你使用 Algolia 搜索</strong>，你还需要<strong>使用对应的 Hexo-Algolia 插件</strong> 才能真正在博客页面中使用 Algolia 搜索。按照下面介绍的步骤操作即可完成 Algolia 搜索的安装。</p><ol><li><p>前往 <a href="https://www.algolia.com/">Algolia 注册页面</a>，注册一个新账户。 可以使用 GitHub 或者 Google 账户直接登录，注册后的 14 天内拥有所有功能（包括收费类别的）。之后若未续费会自动降级为免费账户，免费账户 总共有 10,000 条记录，每月有 100,000 的可以操作数。注册完成后，创建一个新的 Index，这个 Index 将在后面使用。</p><p> <img src="http://theme-next.iissnan.com/uploads/algolia/algolia-step-2.png" alt=""></p></li><li><p>Index 创建完成后，此时这个 Index 里未包含任何数据。接下来需要安装 <a href="https://github.com/oncletom/hexo-algolia">Hexo Algolia</a> 扩展，这个扩展的功能是搜集站点的内容并通过 API 发送给 Algolia。前往站点根目录，执行命令安装：</p><pre><code>$ cd hexo
-$ npm install --save hexo-algolia</code></pre></li><li><p>在 <code>API Keys</code> 页面找到需要使用的一些配置的值，包括 <code>ApplicationID</code> 和 <code>Search-Only API Key</code>。注意，<code>Admin API Key</code> 需要保密保存，不要外泄。</p><p> <img src="https://user-images.githubusercontent.com/8521181/35479066-64e35aec-0428-11e8-91f9-1ec3afa45c5c.png" alt=""></p></li><li><p>在 <code>API Keys</code> 页面，点击 <code>ALL API KEYS</code> 找到新建 INDEX 对应的 key，<strong>编辑权限</strong>，在弹出框中找到 ACL ，<strong>勾选 Add records、 Delete records、List indices、Delete index 权限</strong>，点击 <code>update</code> 更新。</p><p> <img src="https://user-images.githubusercontent.com/8521181/35479064-611aa0b4-0428-11e8-85a1-cfb449b486ec.png" alt=""><br> <img src="https://user-images.githubusercontent.com/8521181/35479084-d4f7ac02-0428-11e8-95a6-c4e3b1bef47b.png" alt=""></p></li><li><p>编辑 <code>站点配置文件</code>，新增以下配置，除了 <code>chunkSize</code> 字段，替换成在 Algolia 获取到的值：</p><pre><code class="yml"><span class="attr">algolia:</span>
+<h1 align="center">Algolia 搜索</h1>
+
+<p>NexT 内部提供 Algolia 的搜索功能，要使用此功能请确保所使用的 NexT 版本在 <code>v5.1.0</code> 之后。需要注意的是，仅仅将 <code>next/_config.yml</code> 中 <code>algolia_search</code> 的 <code>enable</code> 打开<strong>并不能让你使用 Algolia 搜索</strong>，你还需要<strong>使用对应的 Hexo-Algolia 插件</strong> 才能真正在博客页面中使用 Algolia 搜索。按照下面介绍的步骤操作即可完成 Algolia 搜索的安装。</p>
+<ol>
+<li><p>前往 <a href="https://www.algolia.com/">Algolia 注册页面</a>，注册一个新账户。 可以使用 GitHub 或者 Google 账户直接登录，注册后的 14 天内拥有所有功能（包括收费类别的）。之后若未续费会自动降级为免费账户，免费账户 总共有 10,000 条记录，每月有 100,000 的可以操作数。注册完成后，创建一个新的 Index，这个 Index 将在后面使用。</p>
+<p> <img src="http://theme-next.iissnan.com/uploads/algolia/algolia-step-2.png" alt=""></p>
+</li>
+<li><p>Index 创建完成后，此时这个 Index 里未包含任何数据。接下来需要安装 <a href="https://github.com/oncletom/hexo-algolia">Hexo Algolia</a> 扩展，这个扩展的功能是搜集站点的内容并通过 API 发送给 Algolia。前往站点根目录，执行命令安装：</p>
+<pre><code>$ cd hexo
+$ npm install --save hexo-algolia</code></pre></li>
+<li><p>在 <code>API Keys</code> 页面找到需要使用的一些配置的值，包括 <code>ApplicationID</code> 和 <code>Search-Only API Key</code>。注意，<code>Admin API Key</code> 需要保密保存，不要外泄。</p>
+<p> <img src="https://user-images.githubusercontent.com/8521181/35479066-64e35aec-0428-11e8-91f9-1ec3afa45c5c.png" alt=""></p>
+</li>
+<li><p>在 <code>API Keys</code> 页面，点击 <code>ALL API KEYS</code> 找到新建 INDEX 对应的 key，<strong>编辑权限</strong>，在弹出框中找到 ACL ，<strong>勾选 Add records、 Delete records、List indices、Delete index 权限</strong>，点击 <code>update</code> 更新。</p>
+<p> <img src="https://user-images.githubusercontent.com/8521181/35479064-611aa0b4-0428-11e8-85a1-cfb449b486ec.png" alt=""><br> <img src="https://user-images.githubusercontent.com/8521181/35479084-d4f7ac02-0428-11e8-95a6-c4e3b1bef47b.png" alt=""></p>
+</li>
+<li><p>编辑 <code>站点配置文件</code>，新增以下配置，除了 <code>chunkSize</code> 字段，替换成在 Algolia 获取到的值：</p>
+<pre><code class="yml"><span class="attr">algolia:</span>
 <span class="attr">  applicationID:</span> <span class="string">'applicationID'</span>
 <span class="attr">  apiKey:</span> <span class="string">'apiKey'</span>
 <span class="attr">  indexName:</span> <span class="string">'indexName'</span>
-<span class="attr">  chunkSize:</span> <span class="number">5000</span></code></pre></li><li><p>当配置完成，在站点根目录下执行一下命令来更新上传 Index。请注意观察命令的输出。</p><pre><code>$ export HEXO_ALGOLIA_INDEXING_KEY=Search-Only API key # 使用 Git Bash
+<span class="attr">  chunkSize:</span> <span class="number">5000</span></code></pre>
+</li>
+<li><p>当配置完成，在站点根目录下执行一下命令来更新上传 Index。请注意观察命令的输出。</p>
+<pre><code>$ export HEXO_ALGOLIA_INDEXING_KEY=Search-Only API key # 使用 Git Bash
 # set HEXO_ALGOLIA_INDEXING_KEY=Search-Only API key # 使用 Windows CMD 命令行
 $ hexo clean
-$ hexo algolia</code></pre><p> <img src="http://theme-next.iissnan.com/uploads/algolia/algolia-step-4.png" alt=""></p></li><li><p>切换到 NexT 目录，并安装 algolia-instant-search 到 <code>source/lib</code> 目录。</p><pre><code>$ cd themes/next
-$ git clone https://github.com/theme-next/theme-next-algolia-instant-search source/lib/algolia-instant-search</code></pre><p> 如果你想直接使用 CDN 设置 Algolia Search，则需要在<code>主题配置文件</code>中添加 vendors 字段：</p><pre><code class="yml"><span class="attr">vendors:</span>
+$ hexo algolia</code></pre><p> <img src="http://theme-next.iissnan.com/uploads/algolia/algolia-step-4.png" alt=""></p>
+</li>
+<li><p>切换到 NexT 目录，并安装 algolia-instant-search 到 <code>source/lib</code> 目录。</p>
+<pre><code>$ cd themes/next
+$ git clone https://github.com/theme-next/theme-next-algolia-instant-search source/lib/algolia-instant-search</code></pre><p> 如果你想直接使用 CDN 设置 Algolia Search，则需要在<code>主题配置文件</code>中添加 vendors 字段：</p>
+<pre><code class="yml"><span class="attr">vendors:</span>
   <span class="string">...</span>
   <span class="comment"># Internal version: 1</span>
   <span class="comment"># https://www.algolia.com</span>
 <span class="attr">  algolia_instant_js:</span> <span class="attr">https://cdn.jsdelivr.net/npm/instantsearch.js@2.4.1/dist/instantsearch.js</span>
 <span class="attr">  algolia_instant_css:</span> <span class="attr">https://cdn.jsdelivr.net/npm/instantsearch.js@2.4.1/dist/instantsearch.min.css</span>
-  <span class="string">...</span></code></pre></li><li><p>更改<code>主题配置文件</code>，找到 Algolia Search 配置部分，将 <code>enable</code> 改为 <code>true</code>。同时你需要<strong>关闭</strong>其他搜索插件，如 Local Search 等。你也可以根据需要调整 <code>labels</code> 中的文本：</p><pre><code class="yml"><span class="comment"># Algolia Search</span>
+  <span class="string">...</span></code></pre>
+</li>
+<li><p>更改<code>主题配置文件</code>，找到 Algolia Search 配置部分，将 <code>enable</code> 改为 <code>true</code>。同时你需要<strong>关闭</strong>其他搜索插件，如 Local Search 等。你也可以根据需要调整 <code>labels</code> 中的文本：</p>
+<pre><code class="yml"><span class="comment"># Algolia Search</span>
 <span class="attr">algolia_search:</span>
 <span class="attr">  enable:</span> <span class="literal">true</span>
 <span class="attr">  hits:</span>
@@ -21,4 +47,16 @@ $ git clone https://github.com/theme-next/theme-next-algolia-instant-search sour
 <span class="attr">  labels:</span>
 <span class="attr">    input_placeholder:</span> <span class="string">Search</span> <span class="string">for</span> <span class="string">Posts</span>
 <span class="attr">    hits_empty:</span> <span class="string">"We didn't find any results for the search: ${query}"</span>
-<span class="attr">    hits_stats:</span> <span class="string">"${hits} results found in ${time} ms"</span></code></pre></li></ol><h2 align="center">已知的问题</h2><ol><li>考虑到 Algolia 免费账户的限制，目前 <a href="https://github.com/oncletom/hexo-algolia">Hexo-Algolia</a> 插件最新版本去掉了正文索引功能。</li><li><a href="https://github.com/LouisBarranqueiro/hexo-algoliasearch">Hexo-Algoliasearch</a> 插件提供了正文索引功能，不过需要替换 NEXT 主题中的关键字。对于免费账户，<code>Record Too Big</code> 的问题同样存在。<ul><li>替换 <code>source/js/src/algolia-search.js</code> 中所有的 <code>applicationID</code> 为 <code>appId</code></li><li>替换 <code>layout/_partials/head/head.swig</code> 中所有的 <code>applicationID</code> 为 <code>appId</code></li></ul></li></ol>
+<span class="attr">    hits_stats:</span> <span class="string">"${hits} results found in ${time} ms"</span></code></pre>
+</li>
+</ol>
+<h2 align="center">已知的问题</h2>
+
+<ol>
+<li>考虑到 Algolia 免费账户的限制，目前 <a href="https://github.com/oncletom/hexo-algolia">Hexo-Algolia</a> 插件最新版本去掉了正文索引功能。</li>
+<li><a href="https://github.com/LouisBarranqueiro/hexo-algoliasearch">Hexo-Algoliasearch</a> 插件提供了正文索引功能，不过需要替换 NEXT 主题中的关键字。对于免费账户，<code>Record Too Big</code> 的问题同样存在。<ul>
+<li>替换 <code>source/js/src/algolia-search.js</code> 中所有的 <code>applicationID</code> 为 <code>appId</code></li>
+<li>替换 <code>layout/_partials/head/head.swig</code> 中所有的 <code>applicationID</code> 为 <code>appId</code></li>
+</ul>
+</li>
+</ol>

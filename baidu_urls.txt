@@ -1,3 +1,4 @@
+https://purewhite.io/2019/09/23/thrift-concepts-notes/
 https://purewhite.io/2019/04/02/golang-validate-unsafe-is-unsafe/
 https://purewhite.io/2019/04/01/golang-gc-consider-unsafe/
 https://purewhite.io/2019/03/28/golang-mutex-source/
