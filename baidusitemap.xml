@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://purewhite.io/2019/04/01/golang-gc-consider-unsafe/</loc>
+    <lastmod>2019-10-30</lastmod>
+  </url>  <url>
     <loc>https://purewhite.io/2019/09/23/thrift-concepts-notes/</loc>
     <lastmod>2019-09-23</lastmod>
   </url>  <url>
@@ -9,9 +12,6 @@
   </url>  <url>
     <loc>https://purewhite.io/2019/04/02/golang-validate-unsafe-is-unsafe/</loc>
     <lastmod>2019-04-02</lastmod>
-  </url>  <url>
-    <loc>https://purewhite.io/2019/04/01/golang-gc-consider-unsafe/</loc>
-    <lastmod>2019-04-01</lastmod>
   </url>  <url>
     <loc>https://purewhite.io/2019/03/25/golang-escape-check/</loc>
     <lastmod>2019-03-25</lastmod>
