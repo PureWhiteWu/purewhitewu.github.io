@@ -985,4 +985,10 @@ document.addEventListener('pjax:success', () => {
     s.id = 'dsq-count-scr';
     (d.head || d.body).appendChild(s);
   }
-  // defer
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+    </div>
+</body>
+</html>
