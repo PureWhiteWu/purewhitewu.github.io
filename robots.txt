@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Allow: /home/
+Allow: /archives/
+Allow: /about/
+Allow: /tags/
+Allow: /vendors/
+Allow: /js/
+Allow: /css/
+Allow: /fonts/
+Allow: /vendors/
+Allow: /fancybox/
+
+Sitemap: https://purewhite.io/sitemap.xml
+Sitemap: https://purewhite.io/baidusitemap.xml
