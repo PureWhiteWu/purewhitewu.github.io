@@ -608,14 +608,14 @@
   </url>
   
   <url>
-    <loc>https://purewhite.io/categories/go/</loc>
+    <loc>https://purewhite.io/categories/docker/</loc>
     <lastmod>2020-11-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://purewhite.io/categories/docker/</loc>
+    <loc>https://purewhite.io/categories/go/</loc>
     <lastmod>2020-11-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
