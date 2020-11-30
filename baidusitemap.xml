@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.purewhite.io/2017/04/27/git-hooks-auto-deploy/</loc>
+    <lastmod>2020-11-30</lastmod>
+  </url>
+  <url>
     <loc>https://www.purewhite.io/2020/06/30/golang-indirect-function-allocate/</loc>
     <lastmod>2020-11-24</lastmod>
   </url>
@@ -166,10 +170,6 @@
   </url>
   <url>
     <loc>https://www.purewhite.io/2017/05/12/go-cross-compile/</loc>
-    <lastmod>2019-03-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2017/04/27/git-hooks-auto-deploy/</loc>
     <lastmod>2019-03-18</lastmod>
   </url>
   <url>

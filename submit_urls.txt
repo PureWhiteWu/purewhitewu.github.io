@@ -1,3 +1,4 @@
+https://www.purewhite.io/2017/04/27/git-hooks-auto-deploy/
 https://www.purewhite.io/2020/06/30/golang-indirect-function-allocate/
 https://www.purewhite.io/2017/12/14/cas-authentication/
 https://www.purewhite.io/2020/08/24/golang-sync-map-keys-never-delete/
@@ -40,7 +41,6 @@ https://www.purewhite.io/2018/01/17/helm-provide-value/
 https://www.purewhite.io/2018/01/17/helm-local-dev/
 https://www.purewhite.io/2017/04/30/go-slice-tricks/
 https://www.purewhite.io/2017/05/12/go-cross-compile/
-https://www.purewhite.io/2017/04/27/git-hooks-auto-deploy/
 https://www.purewhite.io/2017/04/27/first/
 https://www.purewhite.io/2017/05/04/exec-command-in-go/
 https://www.purewhite.io/2017/05/06/docker-aufs/
