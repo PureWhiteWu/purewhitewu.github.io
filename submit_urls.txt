@@ -1,3 +1,4 @@
+https://www.purewhite.io/2020/12/21/jtalk-11-golang/
 https://www.purewhite.io/2017/04/27/git-hooks-auto-deploy/
 https://www.purewhite.io/2020/06/30/golang-indirect-function-allocate/
 https://www.purewhite.io/2017/12/14/cas-authentication/

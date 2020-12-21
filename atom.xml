@@ -6,7 +6,7 @@
   <link href="https://www.purewhite.io/atom.xml" rel="self"/>
   
   <link href="https://www.purewhite.io/"/>
-  <updated>2020-11-24T11:08:18.687Z</updated>
+  <updated>2020-12-21T05:56:25.394Z</updated>
   <id>https://www.purewhite.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>掘金JTalk Meetup 11期 - Golang 进阶指南和最佳实践</title>
+    <link href="https://www.purewhite.io/2020/12/21/jtalk-11-golang/"/>
+    <id>https://www.purewhite.io/2020/12/21/jtalk-11-golang/</id>
+    <published>2020-12-21T05:54:15.000Z</published>
+    <updated>2020-12-21T05:56:25.394Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h1><p>制作中，请稍后。</p><h1 id="PPT-下载"><a href="#PPT-下载" class="headerlink" title="PPT 下载"></a>PPT 下载</h1><p>链接: <a href="https://pan.baidu.com/s/1w8TKFZcFbAi-ug26pzkxug">https://pan.baidu.com/s/1w8TKFZcFbAi-ug26pzkxug</a>  密码: vvbh</p><p>解压密码：purewhite.io</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;视频&quot;&gt;&lt;a href=&quot;#视频&quot; class=&quot;headerlink&quot; title=&quot;视频&quot;&gt;&lt;/a&gt;视频&lt;/h1&gt;&lt;p&gt;制作中，请稍后。&lt;/p&gt;
+&lt;h1 id=&quot;PPT-下载&quot;&gt;&lt;a href=&quot;#PPT-下载&quot; class=&quot;headerlink&quot; titl</summary>
+      
+    
+    
+    
+    <category term="go" scheme="https://www.purewhite.io/categories/go/"/>
+    
+    
+    <category term="后端" scheme="https://www.purewhite.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="go" scheme="https://www.purewhite.io/tags/go/"/>
+    
+  </entry>
   
   <entry>
     <title>使用人工智能优化 Golang 编译器</title>
