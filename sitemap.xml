@@ -79,14 +79,14 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2019/11/06/new-gitlab-git-flow-spec/</loc>
+    <loc>https://www.purewhite.io/2018/06/13/ruffood-evaluate/</loc>
     
     <lastmod>2020-11-24</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2018/06/13/ruffood-evaluate/</loc>
+    <loc>https://www.purewhite.io/2019/11/06/new-gitlab-git-flow-spec/</loc>
     
     <lastmod>2020-11-24</lastmod>
     
@@ -452,20 +452,6 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2020-12-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.purewhite.io/tags/%E5%BF%83%E5%BE%97/</loc>
-    <lastmod>2020-12-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.purewhite.io/tags/%E8%BF%90%E7%BB%B4/</loc>
     <lastmod>2020-12-21</lastmod>
     <changefreq>daily</changefreq>
@@ -474,6 +460,20 @@
   
   <url>
     <loc>https://www.purewhite.io/tags/git/</loc>
+    <lastmod>2020-12-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.purewhite.io/tags/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2020-12-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.purewhite.io/tags/%E5%BF%83%E5%BE%97/</loc>
     <lastmod>2020-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -622,14 +622,14 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/categories/%E9%9A%8F%E7%AC%94/</loc>
+    <loc>https://www.purewhite.io/categories/%E8%BF%90%E7%BB%B4/</loc>
     <lastmod>2020-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/categories/%E8%BF%90%E7%BB%B4/</loc>
+    <loc>https://www.purewhite.io/categories/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2020-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

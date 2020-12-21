@@ -9,8 +9,8 @@ https://www.purewhite.io/2017/12/22/kubernetes-concepts/
 https://www.purewhite.io/2017/12/28/kubernetes-ingress/
 https://www.purewhite.io/2017/12/23/kubernetes-service/
 https://www.purewhite.io/2017/12/25/kubernetes-volumes/
-https://www.purewhite.io/2019/11/06/new-gitlab-git-flow-spec/
 https://www.purewhite.io/2018/06/13/ruffood-evaluate/
+https://www.purewhite.io/2019/11/06/new-gitlab-git-flow-spec/
 https://www.purewhite.io/2018/06/14/skill-sell-off/
 https://www.purewhite.io/2017/12/17/use-kubeadm-setup-k8s/
 https://www.purewhite.io/2020/10/14/manual-intelligence-optimize-golang-compiler/
