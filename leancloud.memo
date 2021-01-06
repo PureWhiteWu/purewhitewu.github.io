@@ -49,4 +49,5 @@
 {"title":"踩了 Golang sync.Map 的一个坑","url":"/2020/08/24/golang-sync-map-keys-never-delete/"},
 {"title":"使用人工智能优化 Golang 编译器","url":"/2020/10/14/manual-intelligence-optimize-golang-compiler/"},
 {"title":"掘金JTalk Meetup 11期 - Golang 进阶指南和最佳实践","url":"/2020/12/21/jtalk-11-golang/"},
+{"title":"使用 SIMD 优化 Thrift 编码","url":"/2021/01/06/simd-optimize-thrift/"},
 ]
