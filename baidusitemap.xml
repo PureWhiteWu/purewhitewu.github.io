@@ -25,27 +25,11 @@
     <lastmod>2020-11-24</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/12/17/use-kubeadm-setup-k8s/</loc>
-    <lastmod>2020-11-24</lastmod>
-  </url>
-  <url>
     <loc>https://www.purewhite.io/2017/12/22/kubernetes-building-blocks/</loc>
     <lastmod>2020-11-24</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/12/25/kubernetes-volumes/</loc>
-    <lastmod>2020-11-24</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2019/11/06/new-gitlab-git-flow-spec/</loc>
-    <lastmod>2020-11-24</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2017/12/28/kubernetes-ingress/</loc>
-    <lastmod>2020-11-24</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2020/08/24/golang-sync-map-keys-never-delete/</loc>
+    <loc>https://www.purewhite.io/2018/06/14/skill-sell-off/</loc>
     <lastmod>2020-11-24</lastmod>
   </url>
   <url>
@@ -53,7 +37,23 @@
     <lastmod>2020-11-24</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2018/06/14/skill-sell-off/</loc>
+    <loc>https://www.purewhite.io/2017/12/25/kubernetes-volumes/</loc>
+    <lastmod>2020-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2017/12/17/use-kubeadm-setup-k8s/</loc>
+    <lastmod>2020-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2020/08/24/golang-sync-map-keys-never-delete/</loc>
+    <lastmod>2020-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2017/12/28/kubernetes-ingress/</loc>
+    <lastmod>2020-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2019/11/06/new-gitlab-git-flow-spec/</loc>
     <lastmod>2020-11-24</lastmod>
   </url>
   <url>
