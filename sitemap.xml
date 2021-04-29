@@ -58,14 +58,14 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2019/11/06/new-gitlab-git-flow-spec/</loc>
+    <loc>https://www.purewhite.io/2017/12/22/kubernetes-concepts/</loc>
     
     <lastmod>2020-11-24</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2018/06/13/ruffood-evaluate/</loc>
+    <loc>https://www.purewhite.io/2017/12/22/kubernetes-building-blocks/</loc>
     
     <lastmod>2020-11-24</lastmod>
     
@@ -107,14 +107,7 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2017/12/22/kubernetes-concepts/</loc>
-    
-    <lastmod>2020-11-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.purewhite.io/2017/12/22/kubernetes-building-blocks/</loc>
+    <loc>https://www.purewhite.io/2018/06/14/skill-sell-off/</loc>
     
     <lastmod>2020-11-24</lastmod>
     
@@ -135,7 +128,14 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2018/06/14/skill-sell-off/</loc>
+    <loc>https://www.purewhite.io/2019/11/06/new-gitlab-git-flow-spec/</loc>
+    
+    <lastmod>2020-11-24</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.purewhite.io/2018/06/13/ruffood-evaluate/</loc>
     
     <lastmod>2020-11-24</lastmod>
     
@@ -636,14 +636,14 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/categories/go/</loc>
+    <loc>https://www.purewhite.io/categories/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/categories/%E9%9A%8F%E7%AC%94/</loc>
+    <loc>https://www.purewhite.io/categories/go/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
