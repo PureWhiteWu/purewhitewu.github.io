@@ -58,21 +58,14 @@
   </url>
   
   <url>
+    <loc>https://www.purewhite.io/2018/06/14/skill-sell-off/</loc>
+    
+    <lastmod>2020-11-24</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.purewhite.io/2017/12/22/kubernetes-concepts/</loc>
-    
-    <lastmod>2020-11-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.purewhite.io/2017/12/22/kubernetes-building-blocks/</loc>
-    
-    <lastmod>2020-11-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.purewhite.io/2017/12/28/kubernetes-ingress/</loc>
     
     <lastmod>2020-11-24</lastmod>
     
@@ -86,7 +79,14 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2017/12/23/kubernetes-service/</loc>
+    <loc>https://www.purewhite.io/2017/12/17/use-kubeadm-setup-k8s/</loc>
+    
+    <lastmod>2020-11-24</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.purewhite.io/2017/12/22/kubernetes-building-blocks/</loc>
     
     <lastmod>2020-11-24</lastmod>
     
@@ -107,14 +107,21 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2018/06/14/skill-sell-off/</loc>
+    <loc>https://www.purewhite.io/2019/11/06/new-gitlab-git-flow-spec/</loc>
     
     <lastmod>2020-11-24</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2017/12/17/use-kubeadm-setup-k8s/</loc>
+    <loc>https://www.purewhite.io/2017/12/23/kubernetes-service/</loc>
+    
+    <lastmod>2020-11-24</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.purewhite.io/2018/06/13/ruffood-evaluate/</loc>
     
     <lastmod>2020-11-24</lastmod>
     
@@ -128,14 +135,7 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2019/11/06/new-gitlab-git-flow-spec/</loc>
-    
-    <lastmod>2020-11-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.purewhite.io/2018/06/13/ruffood-evaluate/</loc>
+    <loc>https://www.purewhite.io/2017/12/28/kubernetes-ingress/</loc>
     
     <lastmod>2020-11-24</lastmod>
     
@@ -543,6 +543,13 @@
   </url>
   
   <url>
+    <loc>https://www.purewhite.io/tags/%E5%A5%BD%E7%8E%A9%E7%9A%84/</loc>
+    <lastmod>2021-04-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.purewhite.io/tags/mac/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
@@ -551,13 +558,6 @@
   
   <url>
     <loc>https://www.purewhite.io/tags/python/</loc>
-    <lastmod>2021-04-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.purewhite.io/tags/%E5%A5%BD%E7%8E%A9%E7%9A%84/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -636,14 +636,14 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/categories/%E9%9A%8F%E7%AC%94/</loc>
+    <loc>https://www.purewhite.io/categories/go/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/categories/go/</loc>
+    <loc>https://www.purewhite.io/categories/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -664,14 +664,14 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/categories/python/</loc>
+    <loc>https://www.purewhite.io/categories/%E5%A5%BD%E7%8E%A9%E7%9A%84/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/categories/%E5%A5%BD%E7%8E%A9%E7%9A%84/</loc>
+    <loc>https://www.purewhite.io/categories/python/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
