@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.purewhite.io/2021/05/24/inventing-the-service-trait/</loc>
+    <lastmod>2021-05-24</lastmod>
+  </url>
+  <url>
     <loc>https://www.purewhite.io/2021/04/29/golang-time-now-optimize/</loc>
     <lastmod>2021-04-29</lastmod>
   </url>
@@ -29,27 +33,11 @@
     <lastmod>2020-11-24</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2018/06/14/skill-sell-off/</loc>
-    <lastmod>2020-11-24</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2017/12/22/kubernetes-concepts/</loc>
-    <lastmod>2020-11-24</lastmod>
-  </url>
-  <url>
     <loc>https://www.purewhite.io/2017/12/25/kubernetes-volumes/</loc>
     <lastmod>2020-11-24</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/12/17/use-kubeadm-setup-k8s/</loc>
-    <lastmod>2020-11-24</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2017/12/22/kubernetes-building-blocks/</loc>
-    <lastmod>2020-11-24</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2020/08/24/golang-sync-map-keys-never-delete/</loc>
+    <loc>https://www.purewhite.io/2017/12/28/kubernetes-ingress/</loc>
     <lastmod>2020-11-24</lastmod>
   </url>
   <url>
@@ -57,11 +45,23 @@
     <lastmod>2020-11-24</lastmod>
   </url>
   <url>
+    <loc>https://www.purewhite.io/2020/08/24/golang-sync-map-keys-never-delete/</loc>
+    <lastmod>2020-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2017/12/22/kubernetes-concepts/</loc>
+    <lastmod>2020-11-24</lastmod>
+  </url>
+  <url>
     <loc>https://www.purewhite.io/2017/12/23/kubernetes-service/</loc>
     <lastmod>2020-11-24</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2018/06/13/ruffood-evaluate/</loc>
+    <loc>https://www.purewhite.io/2017/12/22/kubernetes-building-blocks/</loc>
+    <lastmod>2020-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2017/12/17/use-kubeadm-setup-k8s/</loc>
     <lastmod>2020-11-24</lastmod>
   </url>
   <url>
@@ -69,7 +69,11 @@
     <lastmod>2020-11-24</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/12/28/kubernetes-ingress/</loc>
+    <loc>https://www.purewhite.io/2018/06/14/skill-sell-off/</loc>
+    <lastmod>2020-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2018/06/13/ruffood-evaluate/</loc>
     <lastmod>2020-11-24</lastmod>
   </url>
   <url>
