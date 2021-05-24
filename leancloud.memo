@@ -52,4 +52,5 @@
 {"title":"使用 SIMD 优化 Thrift 编码","url":"/2021/01/06/simd-optimize-thrift/"},
 {"title":"Golang 泛型初探","url":"/2021/03/09/golang-generic-glance/"},
 {"title":"一次 Golang 的 time.Now 优化之旅","url":"/2021/04/29/golang-time-now-optimize/"},
+{"title":"【译】Inventing the Service trait","url":"/2021/05/24/inventing-the-service-trait/"},
 ]
