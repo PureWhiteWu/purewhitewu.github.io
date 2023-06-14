@@ -47,6 +47,15 @@
   </url>
   
   <url>
+    <loc>https://www.purewhite.io/2018/06/27/service-mesh-0/</loc>
+    
+    <lastmod>2021-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.purewhite.io/2021/11/07/rustc-resolve-reading-defined-multiple-times/</loc>
     
     <lastmod>2021-12-02</lastmod>
@@ -57,15 +66,6 @@
   
   <url>
     <loc>https://www.purewhite.io/2021/01/06/simd-optimize-thrift/</loc>
-    
-    <lastmod>2021-12-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.purewhite.io/2018/06/27/service-mesh-0/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -164,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2021/09/01/rust-faq/</loc>
+    <loc>https://www.purewhite.io/2021/09/23/rust-nomicon-translate/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -173,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2021/09/23/rust-nomicon-translate/</loc>
+    <loc>https://www.purewhite.io/2021/09/01/rust-faq/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -209,6 +209,15 @@
   </url>
   
   <url>
+    <loc>https://www.purewhite.io/2018/07/11/lintcode-find-k-closest-elements/</loc>
+    
+    <lastmod>2021-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.purewhite.io/2017/05/06/letsencrypt-ubuntu-nginx-https/</loc>
     
     <lastmod>2021-12-02</lastmod>
@@ -219,15 +228,6 @@
   
   <url>
     <loc>https://www.purewhite.io/2018/03/30/lintcode-longest-palindrome/</loc>
-    
-    <lastmod>2021-12-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.purewhite.io/2018/07/11/lintcode-find-k-closest-elements/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -317,6 +317,15 @@
   </url>
   
   <url>
+    <loc>https://www.purewhite.io/2021/05/24/inventing-the-service-trait/</loc>
+    
+    <lastmod>2021-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.purewhite.io/2020/12/21/jtalk-11-golang/</loc>
     
     <lastmod>2021-12-02</lastmod>
@@ -335,15 +344,6 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2017/12/28/kubernetes-ingress/</loc>
-    
-    <lastmod>2021-12-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.purewhite.io/2017/12/22/kubernetes-concepts/</loc>
     
     <lastmod>2021-12-02</lastmod>
@@ -353,7 +353,7 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2021/05/24/inventing-the-service-trait/</loc>
+    <loc>https://www.purewhite.io/2017/12/28/kubernetes-ingress/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -425,15 +425,6 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2017/04/29/hexo-baidu-url-submit/</loc>
-    
-    <lastmod>2021-12-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.purewhite.io/2018/01/17/helm-provide-value/</loc>
     
     <lastmod>2021-12-02</lastmod>
@@ -443,7 +434,25 @@
   </url>
   
   <url>
+    <loc>https://www.purewhite.io/2017/04/29/hexo-baidu-url-submit/</loc>
+    
+    <lastmod>2021-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.purewhite.io/2017/05/16/how-to-choose-free-software-licenses/</loc>
+    
+    <lastmod>2021-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.purewhite.io/2017/12/21/design-pattern-opening-words/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -462,15 +471,6 @@
   
   <url>
     <loc>https://www.purewhite.io/2017/12/11/design-pattern-overview/</loc>
-    
-    <lastmod>2021-12-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.purewhite.io/2017/12/21/design-pattern-opening-words/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -615,20 +615,6 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/tags/%E5%90%8E%E7%AB%AF/</loc>
-    <lastmod>2023-06-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.purewhite.io/tags/%E6%9E%B6%E6%9E%84/</loc>
-    <lastmod>2023-06-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.purewhite.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2023-06-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -637,6 +623,20 @@
   
   <url>
     <loc>https://www.purewhite.io/tags/go/</loc>
+    <lastmod>2023-06-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.purewhite.io/tags/%E5%90%8E%E7%AB%AF/</loc>
+    <lastmod>2023-06-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.purewhite.io/tags/%E6%9E%B6%E6%9E%84/</loc>
     <lastmod>2023-06-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -806,14 +806,14 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/categories/%E5%90%8E%E7%AB%AF/</loc>
+    <loc>https://www.purewhite.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2023-06-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>https://www.purewhite.io/categories/%E5%90%8E%E7%AB%AF/</loc>
     <lastmod>2023-06-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
