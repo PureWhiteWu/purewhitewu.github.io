@@ -9,11 +9,11 @@
     <lastmod>2022-03-15</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2018/06/27/service-mesh-0/</loc>
+    <loc>https://www.purewhite.io/2021/11/07/rustc-resolve-reading-defined-multiple-times/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2021/11/07/rustc-resolve-reading-defined-multiple-times/</loc>
+    <loc>https://www.purewhite.io/2018/06/27/service-mesh-0/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -85,19 +85,7 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2018/03/30/lintcode-longest-palindrome/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
     <loc>https://www.purewhite.io/2018/07/11/lintcode-powx-n/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2018/03/30/lintcode-valid-palindrome/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2018/07/25/lis/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -106,6 +94,18 @@
   </url>
   <url>
     <loc>https://www.purewhite.io/2017/04/29/minify-code-using-gulp/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2018/03/30/lintcode-longest-palindrome/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2018/03/30/lintcode-valid-palindrome/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2018/07/25/lis/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -141,11 +141,11 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/12/28/kubernetes-ingress/</loc>
+    <loc>https://www.purewhite.io/2017/12/28/kubernetes-configmap-and-secret/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/12/28/kubernetes-configmap-and-secret/</loc>
+    <loc>https://www.purewhite.io/2017/12/28/kubernetes-ingress/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -153,15 +153,11 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2019/03/28/golang-mutex-source/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
     <loc>https://www.purewhite.io/2020/08/24/golang-sync-map-keys-never-delete/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2021/04/29/golang-time-now-optimize/</loc>
+    <loc>https://www.purewhite.io/2019/03/28/golang-mutex-source/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -169,7 +165,7 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2018/01/17/helm-local-dev/</loc>
+    <loc>https://www.purewhite.io/2021/04/29/golang-time-now-optimize/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -185,7 +181,7 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/12/21/design-pattern-opening-words/</loc>
+    <loc>https://www.purewhite.io/2018/01/17/helm-local-dev/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -197,15 +193,7 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/05/06/docker-aufs/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
     <loc>https://www.purewhite.io/2017/05/04/exec-command-in-go/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2017/04/27/first/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -213,7 +201,15 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/05/12/go-cross-compile/</loc>
+    <loc>https://www.purewhite.io/2017/05/06/docker-aufs/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2017/04/27/first/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2017/12/21/design-pattern-opening-words/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -221,15 +217,19 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
+    <loc>https://www.purewhite.io/2017/05/12/go-cross-compile/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
     <loc>https://www.purewhite.io/2019/03/25/golang-escape-check/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2019/04/01/golang-gc-consider-unsafe/</loc>
+    <loc>https://www.purewhite.io/2021/03/09/golang-generic-glance/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2021/03/09/golang-generic-glance/</loc>
+    <loc>https://www.purewhite.io/2019/04/01/golang-gc-consider-unsafe/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
