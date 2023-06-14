@@ -13,23 +13,11 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2018/06/27/service-mesh-0/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
     <loc>https://www.purewhite.io/2021/01/06/simd-optimize-thrift/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2018/06/14/skill-sell-off/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2017/05/04/temp-file-in-go/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2019/09/23/thrift-concepts-notes/</loc>
+    <loc>https://www.purewhite.io/2018/06/27/service-mesh-0/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -37,11 +25,19 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
+    <loc>https://www.purewhite.io/2018/06/14/skill-sell-off/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2019/09/23/thrift-concepts-notes/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
     <loc>https://www.purewhite.io/2017/12/17/use-kubeadm-setup-k8s/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/05/20/mysql-engines-compare/</loc>
+    <loc>https://www.purewhite.io/2017/05/04/temp-file-in-go/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -49,11 +45,11 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2018/06/13/ruffood-evaluate/</loc>
+    <loc>https://www.purewhite.io/2017/05/20/mysql-engines-compare/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2021/08/11/rust-considered-unsafe-undefined/</loc>
+    <loc>https://www.purewhite.io/2018/06/13/ruffood-evaluate/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -61,23 +57,15 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
+    <loc>https://www.purewhite.io/2021/08/11/rust-considered-unsafe-undefined/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
     <loc>https://www.purewhite.io/2021/09/01/rust-faq/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2018/01/08/kubernetes-network/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2017/12/23/kubernetes-service/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
     <loc>https://www.purewhite.io/2017/12/25/kubernetes-volumes/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2018/07/11/lintcode-find-k-closest-elements/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -89,15 +77,11 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2020/10/14/manual-intelligence-optimize-golang-compiler/</loc>
+    <loc>https://www.purewhite.io/2017/12/23/kubernetes-service/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/04/29/minify-code-using-gulp/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2018/03/30/lintcode-longest-palindrome/</loc>
+    <loc>https://www.purewhite.io/2018/01/08/kubernetes-network/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -105,15 +89,23 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
+    <loc>https://www.purewhite.io/2018/03/30/lintcode-longest-palindrome/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
     <loc>https://www.purewhite.io/2018/07/25/lis/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/05/21/how-to-delete-python-on-mac/</loc>
+    <loc>https://www.purewhite.io/2020/10/14/manual-intelligence-optimize-golang-compiler/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/04/27/how-to-kill-a-dragon-use-different-languages/</loc>
+    <loc>https://www.purewhite.io/2018/07/11/lintcode-find-k-closest-elements/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2017/04/29/minify-code-using-gulp/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -121,11 +113,11 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/05/10/install-openjdk-8-jre-headless-on-debian-jessie/</loc>
+    <loc>https://www.purewhite.io/2017/04/27/how-to-kill-a-dragon-use-different-languages/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2021/05/24/inventing-the-service-trait/</loc>
+    <loc>https://www.purewhite.io/2017/05/21/how-to-delete-python-on-mac/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -134,6 +126,10 @@
   </url>
   <url>
     <loc>https://www.purewhite.io/2017/12/22/kubernetes-building-blocks/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2017/05/10/install-openjdk-8-jre-headless-on-debian-jessie/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -149,15 +145,19 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
+    <loc>https://www.purewhite.io/2021/05/24/inventing-the-service-trait/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
     <loc>https://www.purewhite.io/2020/06/30/golang-indirect-function-allocate/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2020/08/24/golang-sync-map-keys-never-delete/</loc>
+    <loc>https://www.purewhite.io/2019/03/28/golang-mutex-source/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2019/03/28/golang-mutex-source/</loc>
+    <loc>https://www.purewhite.io/2020/08/24/golang-sync-map-keys-never-delete/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -177,15 +177,19 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/05/16/how-to-choose-free-software-licenses/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
     <loc>https://www.purewhite.io/2018/01/17/helm-local-dev/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
+    <loc>https://www.purewhite.io/2017/05/16/how-to-choose-free-software-licenses/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
     <loc>https://www.purewhite.io/2017/12/14/cas-authentication/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2017/12/21/design-pattern-opening-words/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -197,11 +201,7 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/04/27/git-hooks-auto-deploy/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2017/05/06/docker-aufs/</loc>
+    <loc>https://www.purewhite.io/2017/05/12/go-cross-compile/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -209,7 +209,7 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/12/21/design-pattern-opening-words/</loc>
+    <loc>https://www.purewhite.io/2017/04/27/git-hooks-auto-deploy/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -217,7 +217,11 @@
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
-    <loc>https://www.purewhite.io/2017/05/12/go-cross-compile/</loc>
+    <loc>https://www.purewhite.io/2017/05/06/docker-aufs/</loc>
+    <lastmod>2021-12-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.purewhite.io/2019/04/01/golang-gc-consider-unsafe/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
@@ -226,10 +230,6 @@
   </url>
   <url>
     <loc>https://www.purewhite.io/2021/03/09/golang-generic-glance/</loc>
-    <lastmod>2021-12-02</lastmod>
-  </url>
-  <url>
-    <loc>https://www.purewhite.io/2019/04/01/golang-gc-consider-unsafe/</loc>
     <lastmod>2021-12-02</lastmod>
   </url>
   <url>
