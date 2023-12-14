@@ -56,15 +56,6 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2017/12/21/design-pattern-opening-words/</loc>
-    
-    <lastmod>2021-12-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.purewhite.io/2017/05/06/docker-aufs/</loc>
     
     <lastmod>2021-12-02</lastmod>
@@ -74,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2017/05/04/exec-command-in-go/</loc>
+    <loc>https://www.purewhite.io/2017/04/27/first/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -83,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2017/04/27/first/</loc>
+    <loc>https://www.purewhite.io/2017/05/04/exec-command-in-go/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -102,6 +93,15 @@
   
   <url>
     <loc>https://www.purewhite.io/2017/05/12/go-cross-compile/</loc>
+    
+    <lastmod>2021-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.purewhite.io/2017/12/21/design-pattern-opening-words/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -155,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2019/03/28/golang-mutex-source/</loc>
+    <loc>https://www.purewhite.io/2020/08/24/golang-sync-map-keys-never-delete/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -164,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2020/08/24/golang-sync-map-keys-never-delete/</loc>
+    <loc>https://www.purewhite.io/2019/03/28/golang-mutex-source/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -263,15 +263,6 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2021/05/24/inventing-the-service-trait/</loc>
-    
-    <lastmod>2021-12-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.purewhite.io/2020/12/21/jtalk-11-golang/</loc>
     
     <lastmod>2021-12-02</lastmod>
@@ -291,6 +282,15 @@
   
   <url>
     <loc>https://www.purewhite.io/2017/12/22/kubernetes-concepts/</loc>
+    
+    <lastmod>2021-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.purewhite.io/2021/05/24/inventing-the-service-trait/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -443,25 +443,7 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2021/08/11/rust-considered-unsafe-undefined/</loc>
-    
-    <lastmod>2021-12-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.purewhite.io/2021/09/23/rust-nomicon-translate/</loc>
-    
-    <lastmod>2021-12-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.purewhite.io/2021/09/01/rust-faq/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -479,7 +461,25 @@
   </url>
   
   <url>
+    <loc>https://www.purewhite.io/2021/09/01/rust-faq/</loc>
+    
+    <lastmod>2021-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.purewhite.io/2018/06/27/service-mesh-0/</loc>
+    
+    <lastmod>2021-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.purewhite.io/2021/08/11/rust-considered-unsafe-undefined/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -524,7 +524,7 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2017/05/08/upgrade-django-from-1-7-to-1-8/</loc>
+    <loc>https://www.purewhite.io/2017/12/17/use-kubeadm-setup-k8s/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -533,7 +533,7 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/2017/12/17/use-kubeadm-setup-k8s/</loc>
+    <loc>https://www.purewhite.io/2017/05/08/upgrade-django-from-1-7-to-1-8/</loc>
     
     <lastmod>2021-12-02</lastmod>
     
@@ -601,20 +601,6 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2023-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.purewhite.io/tags/%E5%BF%83%E5%BE%97/</loc>
-    <lastmod>2023-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.purewhite.io/tags/%E5%90%8E%E7%AB%AF/</loc>
     <lastmod>2023-12-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -637,6 +623,20 @@
   
   <url>
     <loc>https://www.purewhite.io/tags/go/</loc>
+    <lastmod>2023-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.purewhite.io/tags/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2023-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.purewhite.io/tags/%E5%BF%83%E5%BE%97/</loc>
     <lastmod>2023-12-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -799,13 +799,6 @@
   </url>
   
   <url>
-    <loc>https://www.purewhite.io/categories/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2023-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.purewhite.io/categories/%E5%90%8E%E7%AB%AF/</loc>
     <lastmod>2023-12-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -814,6 +807,13 @@
   
   <url>
     <loc>https://www.purewhite.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2023-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.purewhite.io/categories/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2023-12-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
