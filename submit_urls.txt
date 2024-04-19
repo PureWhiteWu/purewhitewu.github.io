@@ -5,8 +5,8 @@ https://www.purewhite.io/2017/12/14/cas-authentication/
 https://www.purewhite.io/2017/12/21/design-pattern-opening-words/
 https://www.purewhite.io/2017/12/11/design-pattern-overview/
 https://www.purewhite.io/2017/05/06/docker-aufs/
-https://www.purewhite.io/2017/05/04/exec-command-in-go/
 https://www.purewhite.io/2017/04/27/first/
+https://www.purewhite.io/2017/05/04/exec-command-in-go/
 https://www.purewhite.io/2017/04/27/git-hooks-auto-deploy/
 https://www.purewhite.io/2017/05/12/go-cross-compile/
 https://www.purewhite.io/2017/04/30/go-slice-tricks/
@@ -26,8 +26,8 @@ https://www.purewhite.io/2017/05/21/how-to-delete-python-on-mac/
 https://www.purewhite.io/2017/04/27/how-to-kill-a-dragon-use-different-languages/
 https://www.purewhite.io/2017/12/22/install-kubernetes/
 https://www.purewhite.io/2017/05/10/install-openjdk-8-jre-headless-on-debian-jessie/
-https://www.purewhite.io/2020/12/21/jtalk-11-golang/
 https://www.purewhite.io/2021/05/24/inventing-the-service-trait/
+https://www.purewhite.io/2020/12/21/jtalk-11-golang/
 https://www.purewhite.io/2017/12/22/kubernetes-building-blocks/
 https://www.purewhite.io/2017/12/22/kubernetes-concepts/
 https://www.purewhite.io/2017/12/28/kubernetes-configmap-and-secret/
@@ -47,9 +47,9 @@ https://www.purewhite.io/2017/05/20/mysql-engines-compare/
 https://www.purewhite.io/2019/11/06/new-gitlab-git-flow-spec/
 https://www.purewhite.io/2018/06/13/ruffood-evaluate/
 https://www.purewhite.io/2021/08/11/rust-considered-unsafe-undefined/
-https://www.purewhite.io/2021/09/01/rust-faq/
 https://www.purewhite.io/2021/09/23/rust-nomicon-translate/
 https://www.purewhite.io/2021/11/07/rustc-resolve-reading-defined-multiple-times/
+https://www.purewhite.io/2021/09/01/rust-faq/
 https://www.purewhite.io/2018/06/27/service-mesh-0/
 https://www.purewhite.io/2021/01/06/simd-optimize-thrift/
 https://www.purewhite.io/2018/06/14/skill-sell-off/
